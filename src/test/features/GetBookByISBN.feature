@@ -56,6 +56,17 @@ Feature: Testing Asynchronous APIs
     And the price is checked in the currency EUR
 
 
+  @PostmanPOSTTest
+  Scenario: User wants to POST to API 4
+    Given the API exists
+    When A user gets info from the API 4
+    Then the status code is 200
+    And the user posts to the API 4
+    Then the status code is 200
+
+
+
+
 
 
 

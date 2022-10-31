@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,7 +23,7 @@ public class BookStepDefinitions {
 	private Response response;
 	private ValidatableResponse json;
 	private RequestSpecification request;
-	private String[] URL_Arr = new String[] {"","https://www.googleapis.com/books/v1/volumes","https://catfact.ninja/fact", "https://api.coindesk.com/v1/bpi/currentprice.json"};
+	private String[] URL_Arr = new String[] {"","https://www.googleapis.com/books/v1/volumes","https://catfact.ninja/fact", "https://api.coindesk.com/v1/bpi/currentprice.json", "https://40a53909-ebba-41f7-ac45-7a7a400feb18.mock.pstmn.io"};
 
 	@Given("the user can query by isbn (.*)")
 	public void a_book_exists_with_isbn(String isbn){
@@ -89,6 +90,15 @@ public class BookStepDefinitions {
 		System.out.println("Price received from Response $" + price );
 	}
 
+	@And("the user posts to the API (\\d+)")
+	public void user_post_api(int URL_num){
+		RestAssured.baseURI = URL_Arr[URL_num];
+		RequestSpecification request = RestAssured.given();
+		request.header("Content-Type", "application/json");
+		Response response = request.post("/ping");
+		System.out.println("response: " + response.prettyPrint());
+	}
+
 	@And("response includes the following$")
 	public void response_equals(Map<String,String> responseFields){
 		for (Map.Entry<String, String> field : responseFields.entrySet()) {
@@ -112,6 +122,8 @@ public class BookStepDefinitions {
 			}
 		}
 	}
+
+
 
 }
 
