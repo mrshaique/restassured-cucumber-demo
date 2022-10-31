@@ -30,7 +30,7 @@ Feature: Testing Asynchronous APIs
       | items.volumeInfo.averageRating | 4                         |
 
   @RandomFactAPITest
-  Scenario: User calls gets information from an API 2
+  Scenario: User gets information from an Random Fact API
     Given the API exists
     When A user gets info from the API 2
     Then the status code is 200
@@ -40,14 +40,14 @@ Feature: Testing Asynchronous APIs
       | length | 500             |
 
   @BitCoinAPIValidation
-  Scenario: The User has BitCoin API USD price they want to check
+  Scenario: User gets information from an BitCoin API
     Given the API exists
     When A user gets info from the API 3
     Then the status code is 200
     And the user checks the price
 
   @BitCoinAPIValidationDynamic
-  Scenario: The User has BitCoin API price they want to check
+  Scenario: User gets information from an BitCoin API in multiple currencies
     Given the API exists
     When A user gets info from the API 3
     Then the status code is 200

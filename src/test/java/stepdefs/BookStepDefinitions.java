@@ -22,9 +22,6 @@ public class BookStepDefinitions {
 	private Response response;
 	private ValidatableResponse json;
 	private RequestSpecification request;
-
-	private String BASE_URL = "https://www.googleapis.com/books/v1/volumes";
-	private String BASE_URL2 = "https://catfact.ninja/fact";
 	private String[] URL_Arr = new String[] {"","https://www.googleapis.com/books/v1/volumes","https://catfact.ninja/fact", "https://api.coindesk.com/v1/bpi/currentprice.json"};
 
 	@Given("the user can query by isbn (.*)")
@@ -45,7 +42,7 @@ public class BookStepDefinitions {
 
 	@When("a user retrieves the book by Title")
 	public void a_user_retrieves_the_book_by_Title(){
-		response = request.when().get(BASE_URL);
+		response = request.when().get(URL_Arr[1]);
 		System.out.println("response: " + response.prettyPrint());
 	}
 
