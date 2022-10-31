@@ -90,12 +90,25 @@ public class BookStepDefinitions {
 		System.out.println("Price received from Response $" + price );
 	}
 
-	@And("the user posts to the API (\\d+)")
-	public void user_post_api(int URL_num){
+	@And("the user conducts static post to the API (\\d+)")
+	public void user_post_api_static_full(int URL_num){
 		RestAssured.baseURI = URL_Arr[URL_num];
-		RequestSpecification request = RestAssured.given();
+		request = RestAssured.given();
 		request.header("Content-Type", "application/json");
 		Response response = request.post("/ping");
+		System.out.println("response: " + response.prettyPrint());
+	}
+
+	@And("the user is posting to the API (\\d+)")
+	public void user_post_api(int URL_num){
+		RestAssured.baseURI = URL_Arr[URL_num];
+		request = RestAssured.given();
+		request.header("Content-Type", "application/json");
+	}
+
+	@And("the user posts to the API with path (.*)")
+	public void user_post_api_with_path(String path) {
+		Response response = request.post(path);
 		System.out.println("response: " + response.prettyPrint());
 	}
 

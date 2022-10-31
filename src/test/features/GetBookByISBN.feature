@@ -56,13 +56,24 @@ Feature: Testing Asynchronous APIs
     And the price is checked in the currency EUR
 
 
-  @PostmanPOSTTest
+  @PostmanPOSTTestStatic
   Scenario: User wants to POST to API 4
     Given the API exists
     When A user gets info from the API 4
     Then the status code is 200
-    And the user posts to the API 4
+    And the user conducts static post to the API 4
     Then the status code is 200
+
+  @PostmanPOSTTestDynamic
+  Scenario: User wants to dynamically POST to API 4
+    Given the API exists
+    When A user gets info from the API 4
+    Then the status code is 200
+    And the user is posting to the API 4
+    And the user posts to the API with path /ping
+    And the user posts to the API with path /field1
+    And the user posts to the API with path /field2
+    And the user posts to the API with path /field3
 
 
 
