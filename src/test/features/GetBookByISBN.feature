@@ -8,6 +8,7 @@ Feature: Testing Asynchronous APIs
     Given the API exists
     When A user gets info from the API 2
     Then the status code is 200
+    Given the API exists
     When A user gets info from the API 3
     Then the status code is 200
 
